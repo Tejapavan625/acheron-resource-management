@@ -12,4 +12,5 @@ public class ArmRMSApplication {
 	public static void main(String[] args) {
 		SpringApplication.run(ArmRMSApplication.class, args);
 	}
+
 }
