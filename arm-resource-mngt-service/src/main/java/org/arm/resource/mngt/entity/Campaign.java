@@ -37,6 +37,8 @@ public class Campaign {
 	private Timestamp createDate;
 	private Timestamp updateDate;
 	private int isDeleted;
+	private String createdBy;
+	private String updatedBy;
 	
 	@OneToMany(mappedBy = "campaign")
 	@JsonManagedReference
@@ -95,6 +97,19 @@ public class Campaign {
 	}
 	public void setUpdateDate(Timestamp updateDate) {
 		this.updateDate = updateDate;
+	}
+	
+	public String getCreatedBy() {
+		return createdBy;
+	}
+	public void setCreatedBy(String createdBy) {
+		this.createdBy = createdBy;
+	}
+	public String getUpdatedBy() {
+		return updatedBy;
+	}
+	public void setUpdatedBy(String updatedBy) {
+		this.updatedBy = updatedBy;
 	}
 	public int getIsDeleted() {
 		return isDeleted;

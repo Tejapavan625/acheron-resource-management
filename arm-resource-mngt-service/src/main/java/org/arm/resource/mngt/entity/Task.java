@@ -46,7 +46,10 @@ public class Task {
 	private Timestamp createDate;
 	private Timestamp updateDate;
 	private int isDeleted;
+	private String createdBy;
+	private String updatedBy;
 	
+
 	@JsonBackReference
 	@ManyToOne
 	@JoinColumn(name="project_id")
@@ -160,6 +163,24 @@ public class Task {
 	public void setResource(Resource resource) {
 		this.resource = resource;
 	}
+	
+	
+	public String getCreatedBy() {
+		return createdBy;
+	}
+
+	public void setCreatedBy(String createdBy) {
+		this.createdBy = createdBy;
+	}
+
+	public String getUpdatedBy() {
+		return updatedBy;
+	}
+
+	public void setUpdatedBy(String updatedBy) {
+		this.updatedBy = updatedBy;
+	}
+
 	
 	
 }

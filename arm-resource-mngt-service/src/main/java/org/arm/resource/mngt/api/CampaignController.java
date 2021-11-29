@@ -9,6 +9,9 @@ import org.arm.resource.mngt.entity.Priority;
 import org.arm.resource.mngt.entity.Status;
 import org.arm.resource.mngt.service.ICampaignService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpHeaders;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RestController;
@@ -18,11 +21,13 @@ public class CampaignController {
 	@Autowired
 	private ICampaignService campaignService;
 	
-	@GetMapping("/campaign")
-	public List<Campaign> allC(){
-		return campaignService.getAllCampaign();
+	@GetMapping("/campaignall")
+	ResponseEntity<List<Campaign>> getCampaigns() {
+		HttpHeaders headers = new HttpHeaders();
+		headers.add("desc", "Get");
+		List<Campaign> camapaign = campaignService.getAllCampaign();
+		return ResponseEntity.status(HttpStatus.OK).headers(headers).body(camapaign);
 	}
-	
 	@PostMapping("/campaign/create")
 	public void createCampaign(){
 		Campaign campaign = new Campaign();

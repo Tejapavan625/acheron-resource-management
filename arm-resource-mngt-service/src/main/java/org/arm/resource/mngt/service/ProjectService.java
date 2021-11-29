@@ -3,7 +3,9 @@ package org.arm.resource.mngt.service;
 import java.util.List;
 
 import org.arm.resource.mngt.entity.Campaign;
+import org.arm.resource.mngt.entity.ExceptionMessage;
 import org.arm.resource.mngt.entity.Project;
+import org.arm.resource.mngt.exceptions.CampaignNotFoundException;
 import org.arm.resource.mngt.repository.CampaignRepository;
 import org.arm.resource.mngt.repository.ProjectRepository;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -17,13 +19,18 @@ public class ProjectService implements IProjectService {
 
 	@Override
 	public List<Project> getAllProject() {
-		// TODO Auto-generated method stub
-		return projectRepository.findAll();
-	}
+		List<Project> projectList=projectRepository.findAll();
+		if(projectList.isEmpty()) {
+			throw new CampaignNotFoundException(ExceptionMessage.CampaignDataEmpty.getMessage());
+		}
+			
+			return projectList;
+
+		}
+	
 
 	@Override
 	public void save(Project project) {
-		// TODO Auto-generated method stub
 		projectRepository.save(project);
 	}
 

@@ -41,6 +41,8 @@ public class Project {
 	private Timestamp createDate;
 	private Timestamp updateDate;
 	private int isDeleted;
+	private String createdBy;
+	
 	
 	@ManyToOne
 	@JoinColumn(name="campaign_id")
@@ -111,6 +113,20 @@ public class Project {
 	public void setIsDeleted(int isDeleted) {
 		this.isDeleted = isDeleted;
 	}
+	public String getCreatedBy() {
+		return createdBy;
+	}
+	public void setCreatedBy(String createdBy) {
+		this.createdBy = createdBy;
+	}
+	public String getUpdatedBy() {
+		return updatedBy;
+	}
+	public void setUpdatedBy(String updatedBy) {
+		this.updatedBy = updatedBy;
+	}
+	private String updatedBy;
+	
 	
 	public Campaign getCampaign() {
 		return campaign;

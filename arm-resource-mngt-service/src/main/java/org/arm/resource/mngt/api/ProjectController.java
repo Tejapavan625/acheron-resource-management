@@ -9,6 +9,9 @@ import org.arm.resource.mngt.entity.Project;
 import org.arm.resource.mngt.entity.Status;
 import org.arm.resource.mngt.service.IProjectService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpHeaders;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RestController;
@@ -19,10 +22,12 @@ public class ProjectController {
 	@Autowired
 	private IProjectService projectService;
 	
-	
-	@GetMapping("/project")
-	public List<Project> allt(){
-		return projectService.getAllProject();
+	@GetMapping("/projects")
+	ResponseEntity<List<Project>> getProjects() {
+		HttpHeaders headers = new HttpHeaders();
+		headers.add("desc", "Get");
+		List<Project> project = projectService.getAllProject();
+		return ResponseEntity.status(HttpStatus.OK).headers(headers).body(project);
 	}
 	
 	@GetMapping("/project/create")

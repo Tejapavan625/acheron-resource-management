@@ -6,10 +6,14 @@ import java.util.Date;
 import java.util.List;
 
 import org.arm.resource.mngt.entity.Priority;
+import org.arm.resource.mngt.entity.Project;
 import org.arm.resource.mngt.entity.Status;
 import org.arm.resource.mngt.entity.Task;
 import org.arm.resource.mngt.service.ITaskService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpHeaders;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RestController;
@@ -18,12 +22,13 @@ import org.springframework.web.bind.annotation.RestController;
 public class TaskController {
 	@Autowired
 	private ITaskService taskService;
-	
-	@GetMapping("/task")
-	public List<Task> allT(){
-		return taskService.getAllTask();
+	@GetMapping("/tasks")
+	ResponseEntity<List<Task>> getTasks() {
+		HttpHeaders headers = new HttpHeaders();
+		headers.add("desc", "Get");
+		List<Task> task = taskService.getAllTask();
+		return ResponseEntity.status(HttpStatus.OK).headers(headers).body(task);
 	}
-	
 	@GetMapping("/task/create")
 	public void createTask(){
 		//List<Task> tasks = new ArrayList<>();

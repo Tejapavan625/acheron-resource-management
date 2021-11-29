@@ -33,6 +33,8 @@ public class Resource {
 	private Timestamp createDate;
 	private Timestamp updateDate;
 	private int isDeleted;
+	
+	
 	@OneToMany(mappedBy="resource")
 	@JsonBackReference
 	private List<Task> taskList;
